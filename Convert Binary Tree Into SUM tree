@@ -3,6 +3,7 @@ class Solution {
       
     // Convert a given tree to a tree where every node contains sum of values of
     // nodes in left and right subtrees in the original tree
+    // 1.Not including root node
     int convertnodes(Node* root)
     { 
         if(root==NULL)
@@ -13,6 +14,23 @@ class Solution {
         int d=root->data;
          root->data=l+h;
         return d+h+l;
+         
+    }
+    void toSumTree(Node *node)
+    {
+     convertnodes(node);
+    }
+};
+//2. Including root node
+ int convertnodes(Node* root)
+    { 
+        if(root==NULL)
+        return 0;
+        
+        int l=convertnodes(root->left);
+        int h=convertnodes(root->right);
+         root->data=root->data+l+h;
+        return root->data;
          
     }
     void toSumTree(Node *node)
